@@ -1,0 +1,51 @@
+.header{
+    display:flex;
+    justify-content: space-between;
+    margin:0.5rem;
+    border:1px solid black; 
+}
+
+.nav-items > ul{
+    list-style-type:none;
+    display: flex;
+}
+
+.nav-items > ul > li{
+    padding:1rem;
+}
+
+.logo{
+    width:5rem;
+}
+
+.card{
+    width:15rem;
+    border:1px solid black;
+    padding:1rem;
+    margin:0.5rem;
+}
+
+.restaurant-list{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.card>img{
+    width:100%;
+}
+
+.search-container{
+    /* padding:1rem; */
+    margin:0.5rem;
+}
+
+.search-btn{
+    margin:0.5rem;
+}
+
+.shimmer{
+    width:15rem;
+    background: lightgrey;
+    height:15rem;
+    margin:1rem;
+}
