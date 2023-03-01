@@ -1,9 +1,7 @@
-import React from 'react'
-
 const About = () => {
   return (
-    <div>About</div>
+    <div>This is a new React App🥶🚀</div>
   )
 }
 
-export default About
+export default About;

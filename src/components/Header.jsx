@@ -1,17 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import Contact from "./Contact";
-import About from "./About";
+import Logo from "../assets/img/foodiewoodie.jpg";
+import { Link } from "react-router-dom";
 
 // import { useState } from "react";
 
 const Title = () => (
   <a href="/">
-    <img
-      className="logo"
-      alt="logo"
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRppxGuYetBIxAHpTKVNGWAkyNytnuK825THA&usqp=CAU"
-    />
+    <img className="logo" alt="logo" src={Logo} />
   </a>
 );
 
@@ -22,12 +18,16 @@ const Header = () => {
       <Title />
       <div className="nav-items">
         <ul>
-          <li>Home</li>
           <li>
-            <About />
+            <Link to="/">Home</Link>
           </li>
+
           <li>
-            <Contact />
+            <Link to="/about">About</Link>
+          </li>
+
+          <li>
+            <Link to="/contact">Contact</Link>
           </li>
           <li>Cart</li>
         </ul>
