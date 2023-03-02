@@ -25,7 +25,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   // console.log(searchText);
 
-  useEffect(() => {
+  useEffect(() => { //we can have multiple useEffect in our code
     //API call
     getRestaurants();
   }, []);

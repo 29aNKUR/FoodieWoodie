@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Logo from "../assets/img/foodiewoodie.jpg";
+import Logo from "../assets/img/foodiewoodie.jpg"; //default export
 import { Link } from "react-router-dom";
 
 // import { useState } from "react";
