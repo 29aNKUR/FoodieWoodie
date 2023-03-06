@@ -8,8 +8,20 @@ import About from "./components/About";
 import Error from "./components/Error";
 import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
+// import ProfileClass from "./components/ProfileClassBased";
+// import AboutClass from "./components/AboutClassBased";
 import Profile from "./components/Profile";
+import {lazy,Suspense} from "react";
+import Shimmer from "./Shimmer";
 
+//Chunking
+//Code splitting
+//Dynamic Loading
+//Lazy Loading
+//On Demand Loading
+//Dynamic Import
+
+const Instamart = lazy(() => import("./components/Instamart"));
 
 const AppLayout= () => {
   return (
@@ -46,6 +58,14 @@ const appRouter = createBrowserRouter([
       {
         path:"/restaurant/:resId",
         element:<RestaurantMenu/>
+      },
+      {
+        path:"/instamart",
+        element:
+        <Suspense fallback={<Shimmer/>}>
+             <Instamart/>
+         </Suspense>
+     
       }
     ],
   },

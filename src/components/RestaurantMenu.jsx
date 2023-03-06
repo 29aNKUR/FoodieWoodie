@@ -2,26 +2,18 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../config.jsx";
 import Shimmer from "../Shimmer.jsx";
+import useRestaurant from "../utils/useRestaurant.jsx";
+
 
 const RestaurantMenu = () => {
   //how to read dynamic URL using params
   const params = useParams();
   const { resId } = params;
 
-  const [restaurants, setRestaurants] = useState(null); //restaurant data is object thats why we are passing empty object in useState
+  // const [restaurants, setRestaurants] = useState(null); //restaurant data is object thats why we are passing empty object in useState
 
-  useEffect(() => {
-    getRestaurantInfo();
-  }, []);
+  const restaurants = useRestaurant(resId); // restaurants is just a variable
 
-  async function getRestaurantInfo() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/v4/full?lat=22.6678179&lng=75.8904979&menuId="+resId
-    );
-    const json = await data.json();
-    // console.log(json);
-    setRestaurants(json.data);
-  }
 
   return !restaurants ? (
     <Shimmer />

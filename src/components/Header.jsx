@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import Logo from "../assets/img/foodiewoodie.jpg"; //default export
 import { Link } from "react-router-dom";
+import useOnline from "../utils/useOnline";
+// import useAuth from "../utils/useAuth";
 
-// import { useState } from "react";
 
 const Title = () => (
   <a href="/">
@@ -11,8 +12,16 @@ const Title = () => (
   </a>
 );
 
+
+
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  // const statusOfLogin = useAuth();
+  
+  const online = useOnline();
+
+
   return (
     <div className="header">
       <Title />
@@ -29,14 +38,23 @@ const Header = () => {
           <li>
             <Link to="/contact">Contact</Link>
           </li>
+
           <li>Cart</li>
+
+          <li>
+            <Link to="/instamart">Instamart</Link>
+          </li>
         </ul>
       </div>
+      <h1>{online?"✅":"🔴"}</h1>
       {isLoggedIn ? (
         <button onClick={() => setIsLoggedIn(false)}>Logout</button>
-      ) : (
+        ) : (
         <button onClick={() => setIsLoggedIn(true)}>Login</button>
       )}
+      {/* {
+        statusOfLogin?<button>Logout</button> : <button>LogIn</button>
+      } */}
     </div>
   );
 };
