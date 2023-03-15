@@ -14,6 +14,10 @@ import Profile from "./components/Profile";
 import {lazy,Suspense,useContext,useState} from "react";
 import Shimmer from "./Shimmer";
 import UserContext from "./utils/UserContext";
+import Cart from "./components/Cart";
+import store from "./utils/Store";
+import { Provider } from "react-redux";
+
 
 
 //Chunking
@@ -31,7 +35,8 @@ const AppLayout= () => {
     email:"semle@gmail.com"
   });
   return (
-   <UserContext.Provider 
+    <Provider store={store}>
+        <UserContext.Provider 
     value={{
       user:user,
       setUser:setUser
@@ -41,6 +46,9 @@ const AppLayout= () => {
     <Outlet />
     <Footer />
     </UserContext.Provider>
+
+    </Provider>
+ 
   );
 }
 
@@ -77,6 +85,10 @@ const appRouter = createBrowserRouter([
              <Instamart/>
          </Suspense>
      
+      },
+      {
+        path:"/cart",
+        element:<Cart/>
       }
     ],
   },
