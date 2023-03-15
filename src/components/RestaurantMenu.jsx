@@ -18,7 +18,7 @@ const RestaurantMenu = () => {
   return !restaurants ? (
     <Shimmer />
   ) : (
-    <div className="menu">
+    <div>
       <div>
         <h1>Restaurant id:{resId}</h1>
         <h2>{restaurants.name}</h2>

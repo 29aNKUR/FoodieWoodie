@@ -11,8 +11,10 @@ import RestaurantMenu from "./components/RestaurantMenu";
 // import ProfileClass from "./components/ProfileClassBased";
 // import AboutClass from "./components/AboutClassBased";
 import Profile from "./components/Profile";
-import {lazy,Suspense} from "react";
+import {lazy,Suspense,useContext,useState} from "react";
 import Shimmer from "./Shimmer";
+import UserContext from "./utils/UserContext";
+
 
 //Chunking
 //Code splitting
@@ -24,12 +26,21 @@ import Shimmer from "./Shimmer";
 const Instamart = lazy(() => import("./components/Instamart"));
 
 const AppLayout= () => {
+  const [user,setUser] = useState({
+    name:"Ankur Semle one",
+    email:"semle@gmail.com"
+  });
   return (
-   <>
+   <UserContext.Provider 
+    value={{
+      user:user,
+      setUser:setUser
+   
+   }}>
     <Header />
     <Outlet />
     <Footer />
-    </>
+    </UserContext.Provider>
   );
 }
 

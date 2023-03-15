@@ -1,21 +1,22 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { useEffect } from "react";
 import Shimmer from "../Shimmer";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
-
-
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
+  const { user, setUser } = useContext(UserContext);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   // console.log(searchText);
 
-  useEffect(() => { //we can have multiple useEffect in our code
+  useEffect(() => {
+    //we can have multiple useEffect in our code
     //API call
     getRestaurants();
   }, []);
@@ -33,8 +34,8 @@ const Body = () => {
 
   const online = useOnline();
 
-  if(!online){
-    return <h1>🔴You are not connected to the Internet!</h1>
+  if (!online) {
+    return <h1>🔴You are not connected to the Internet!</h1>;
   }
 
   //conditional Rendering
@@ -51,14 +52,16 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="search-container">
+      <div className="p-5 bg-blue-100 shadow-lg my-5">
         <input
           type="text"
+          className="m-2 p-2 focus:bg-slate-200"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
+
         <button
-          className="search-btn"
+          className="m-2 p-2 bg-gray-500 text-white rounded-md hover:bg-slate-400"
           onClick={() => {
             //need to filter the data
             const data = filterData(searchText, allRestaurants);
@@ -68,11 +71,60 @@ const Body = () => {
         >
           Search
         </button>
+
+        {/* <input
+          type="text"
+          value={user.name}
+          onChange={(e) =>
+            setUser({
+              name: e.target.value,
+              email: "ankursemle@gmail.com",
+            })
+          }
+        /> */}
+
+        {/* <input
+          type="text"
+          value={user.name}
+          onChange={(e) =>
+            setUser({
+              name: e.target.value,
+              email: "ankursemle@gmail.com",
+            })
+          }
+        /> */}
+
+        {/* using spread operator */}
+        <input
+        placeholder="name"
+          type="text"
+          onChange={(e) =>
+            setUser({
+              ...user,
+              name: e.target.value,
+            })
+          }
+        />
+
+        <input className="m-2" placeholder="email"
+          type="text"
+          onChange={(e) =>
+            setUser({
+              ...user,
+              email: e.target.value,
+            })
+          }
+        />
       </div>
-      <div className="restaurant-list">
+      <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => {
           return (
-            <Link to={"/restaurant/"+restaurant.data.id}><RestaurantCard {...restaurant.data} key={restaurant.data.id} /></Link>
+            <Link
+              to={"/restaurant/" + restaurant.data.id}
+              key={restaurant.data.id}
+            >
+              <RestaurantCard {...restaurant.data} />
+            </Link>
           );
         })}
       </div>
