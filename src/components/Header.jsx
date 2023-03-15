@@ -1,20 +1,24 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import Logo from "../assets/img/foodiewoodie.jpg"; //default export
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/UserContext";
+
+
 // import useAuth from "../utils/useAuth";
 
 
 const Title = () => (
   <a href="/">
-    <img className="logo" alt="logo" src={Logo} />
+    <img className="h-28 p-2" alt="logo" src={Logo} />
   </a>
 );
 
 
 
 const Header = () => {
+  const {user} = useContext(UserContext);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   // const statusOfLogin = useAuth();
@@ -23,29 +27,31 @@ const Header = () => {
 
 
   return (
-    <div className="header">
+    <div className="flex flex-wrap border shadow-lg bg-blue-100 justify-between">
       <Title />
-      <div className="nav-items">
-        <ul>
-          <li>
+      <div>
+        <ul className="flex py-10">
+          <li className = "px-2">
             <Link to="/">Home</Link>
           </li>
 
-          <li>
+          <li className = "px-2">
             <Link to="/about">About</Link>
           </li>
 
-          <li>
+          <li className = "px-2">
             <Link to="/contact">Contact</Link>
           </li>
 
-          <li>Cart</li>
+          <li className = "px-2">Cart</li>
 
-          <li>
+          <li className = "px-2">
             <Link to="/instamart">Instamart</Link>
           </li>
         </ul>
+        
       </div>
+      <h1>{user.name}</h1>
       <h1>{online?"✅":"🔴"}</h1>
       {isLoggedIn ? (
         <button onClick={() => setIsLoggedIn(false)}>Logout</button>
@@ -55,6 +61,7 @@ const Header = () => {
       {/* {
         statusOfLogin?<button>Logout</button> : <button>LogIn</button>
       } */}
+     
     </div>
   );
 };
