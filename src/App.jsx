@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./components/About";
 import Error from "./components/Error";
 import Contact from "./components/Contact";
-import RestaurantMenu from "./components/RestaurantMenu";
+import RestaurantDetails from "./components/RestaurantDetails";
 // import ProfileClass from "./components/ProfileClassBased";
 // import AboutClass from "./components/AboutClassBased";
 import Profile from "./components/Profile";
@@ -76,7 +76,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path:"/restaurant/:resId",
-        element:<RestaurantMenu/>
+        element:<RestaurantDetails/>
       },
       {
         path:"/instamart",

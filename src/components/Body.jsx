@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
 import UserContext from "../utils/UserContext";
+import axios from "axios";
+
 
 const Body = () => {
   const { user, setUser } = useContext(UserContext);
@@ -22,14 +24,29 @@ const Body = () => {
   }, []);
 
   async function getRestaurants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.6678179&lng=75.8904979&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
+    // const data = await fetch(
+    //   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.6678179&lng=75.8904979&page_type=DESKTOP_WEB_LISTING"
+    // );
+    // const json = await data.json();
     // console.log(json);
+
+    const response = await axios
+    .get("https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.6678179&lng=75.8904979&page_type=DESKTOP_WEB_LISTING")
+    .catch((err)=>{
+      if(err){
+        // console.log(err.response)
+        alert("Something is wrong with Fetching API. Please toggle on your CORS ext")
+      }
+    })
+
+    if(response){
+      // console.log(response);
+         setAllRestaurants(response?.data?.data?.cards[2]?.data?.data?.cards);
+    setFilteredRestaurants(response?.data?.data?.cards[2]?.data?.data?.cards);
+    }
     //optional chaining
-    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    // setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    // setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   }
 
   const online = useOnline();
