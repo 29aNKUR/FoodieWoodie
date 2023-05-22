@@ -5,6 +5,7 @@ import Shimmer from "../Shimmer.jsx";
 import { addItem } from "../utils/cartSlice.jsx";
 import useRestaurant from "../utils/useRestaurant.jsx";
 import RestaurantInfo from "./RestaurantInfo.jsx";
+import RestaurantMenuList from "./RestaurantMenuList.jsx";
 
 
 const RestaurantDetails = () => {
@@ -34,7 +35,7 @@ const RestaurantDetails = () => {
   return !restaurants ? (
     <Shimmer />
   ) : (
-    <div className="flex">
+    <div className="">
       {/* <div>
         <h1>Restaurant id:{resId}</h1>
         <h2>{restaurants.name}</h2>
@@ -45,12 +46,17 @@ const RestaurantDetails = () => {
         <h3>{restaurants.costForTwoMsg}</h3>
       </div> */}
       <RestaurantInfo {...restaurants.info}/>
+      <div>
+      <RestaurantMenuList menu = {restaurants.menu} />
+      </div>
+      
+      
       {/* handleAddItem is just to check the dispatch functionality */}
       {/* <div>
       <button className="p-2 m-5 bg-green-100" onClick={()=>handleAddItem()}>add item</button>
       </div> */}
       <div className="p-5">
-        <h1>Menu</h1>
+        
         <ul>
           {/* {Object.values(restaurants.map((items)=>items.card.info)).map(
             (

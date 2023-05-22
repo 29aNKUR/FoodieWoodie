@@ -4,8 +4,11 @@ import { IMG_CDN_URL } from '../config';
 const RestaurantInfo = (restaurant) => {
   return (
     <div>
-        {/* //rstaurants.info["cloudinaryImageId"] */}
+        <div className='flex'>
         <img src={IMG_CDN_URL+restaurant?.cloudinaryImageId} alt="" /> 
+        <h1>{restaurant.name}</h1>
+        </div>
+       
     </div>
   )
 }
