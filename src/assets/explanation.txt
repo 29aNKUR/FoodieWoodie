@@ -1,0 +1,2 @@
+1. We cant calculate total amount in the FoodItem component itself rather we created a custom hook to calculate.
+2.UseItemTotal hook calculates total amount by the formula = price * quantity. We subscribe to the cart items and get the values of the items present in the items object.

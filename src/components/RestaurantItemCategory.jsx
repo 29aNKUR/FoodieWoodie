@@ -5,14 +5,20 @@ import FoodItem from './FoodItem'
 const RestaurantItemCategory = ({category}) => {
 
 
-    const items = category?.itemCards.map((items)=>items?.card?.info)
+    // const items = category?.itemCards.map((items)=>items?.card?.info)
 
 
   return (
     <div>
         <h1>{category?.title}</h1>
         <div>
-        <FoodItem item = {items} />
+          {
+            category.itemCards.map((item,index) => (
+              <div key={index}><FoodItem item = {item.card.info} /></div>
+              
+            ))
+          }
+        
         </div>
 
     </div>

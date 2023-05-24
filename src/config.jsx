@@ -3,7 +3,7 @@ export const IMG_CDN_URL = "https://res.cloudinary.com/swiggy/image/upload/fl_lo
 export const FOOD_ITEM_URL = "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/"
 // export const FETCH_MENU_URL = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.6678179&lng=75.8904979&restaurantId=";
 
-export const FETCH_MENU_URL = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.6672946&lng=75.888397&restaurantId=";
+export const FETCH_MENU_URL = "https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.6672946&lng=75.888397&restaurantId=";
 
 
 
