@@ -13,10 +13,15 @@ import RestaurantDetails from "./components/RestaurantDetails";
 import Profile from "./components/Profile";
 import {lazy,Suspense,useContext,useState} from "react";
 import Shimmer from "./Shimmer";
-import UserContext from "./utils/UserContext";
+// import UserContext from "./utils/UserContext";
 import Cart from "./components/Cart";
 import store from "./utils/Store";
 import { Provider } from "react-redux";
+import Signup from "./components/Signup";
+import { UserAuthContextProvider } from "./context/UserAuthContext";
+import Login from "./components/Login";
+
+
 
 
 
@@ -29,25 +34,21 @@ import { Provider } from "react-redux";
 
 const Instamart = lazy(() => import("./components/Instamart"));
 
-const AppLayout= () => {
-  const [user,setUser] = useState({
-    name:"Ankur Semle one",
-    email:"semle@gmail.com"
-  });
+const App = () => {
   return (
     <Provider store={store}>
-        <UserContext.Provider 
-    value={{
-      user:user,
-      setUser:setUser
-   
-   }}>
-    <Header />
-    <Outlet />
-    <Footer />
-    </UserContext.Provider>
-
+      <UserAuthContextProvider>
+        <Outlet/>
+      </UserAuthContextProvider>
     </Provider>
+  )
+}
+
+const AppLayout= () => {
+
+  return (
+ 
+    <><Header /><Outlet /><Footer /></>
  
   );
 }
@@ -55,42 +56,56 @@ const AppLayout= () => {
 const appRouter = createBrowserRouter([
   {
     path:"/",
-    element:<AppLayout/>,
+    element:<App/>,
     errorElement:<Error/>,
-    children:[
-      {
-        path:"/",
-        element:<Body/>,
-      },
-      {
-        path:"about",
-        element:<About/>,
-        children:[{
-          path:"profile",
-          element:<Profile/>
-        }]
-      },
-      {
-        path:"/contact",
-        element:<Contact/>
-      },
-      {
-        path:"/restaurant/:resId",
-        element:<RestaurantDetails/>
-      },
-      {
-        path:"/instamart",
-        element:
-        <Suspense fallback={<Shimmer/>}>
-             <Instamart/>
-         </Suspense>
-     
-      },
-      {
-        path:"/cart",
-        element:<Cart/>
-      }
-    ],
+    children : [{
+      path:"/",
+      element:<AppLayout/>,
+      errorElement:<Error/>,
+      children:[
+        {
+          path:"/",
+          element:<Body/>,
+        },
+        {
+          path:"about",
+          element:<About/>,
+          children:[{
+            path:"profile",
+            element:<Profile/>
+          }]
+        },
+        {
+          path:"/contact",
+          element:<Contact/>
+        },
+        {
+          path:"/restaurant/:resId",
+          element:<RestaurantDetails/>
+        },
+        {
+          path:"/instamart",
+          element:
+          <Suspense fallback={<Shimmer/>}>
+               <Instamart/>
+           </Suspense>
+       
+        },
+        {
+          path:"/cart",
+          element:<Cart/>
+        },
+        {
+          path:"/signup",
+          element:<Signup/>
+        },
+        {
+          path:"/login",
+          element:<Login/>
+        }
+      ]
+    }]
+   ,
   },
 ]);
  

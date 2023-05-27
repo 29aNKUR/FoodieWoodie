@@ -8,11 +8,11 @@ const RestaurantNestedItemCategory = ({nestedCategory}) => {
 
     return (
         <div>
-            <div>
+            <div className="">
                 <h1>{nestedCategory?.title}</h1>
             </div>
 
-            <div>
+            <div className="text-2xl font-bold">
                 {nestedCategory?.categories?.map((category)=>{
                     <RestaurantItemCategory ItemCategory={category}/>
                 })}

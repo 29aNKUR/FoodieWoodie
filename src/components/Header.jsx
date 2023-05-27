@@ -6,7 +6,8 @@ import useOnline from "../utils/useOnline";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 import store from "../utils/Store";
-
+import { useUserAuth } from "../context/UserAuthContext";
+import { signOut } from "firebase/auth";
 
 // import useAuth from "../utils/useAuth";
 
@@ -17,10 +18,29 @@ const Title = () => (
 );
 
 const Header = () => {
-  const cartItems = useSelector(store => store.cart.items);
+  const { user, logOut, logIn } = useUserAuth();
+  const [error, setError] = useState("");
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleSignIn = async () => {
+    try {
+      await logIn();
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const cartItems = useSelector((store) => store.cart.items);
   // console.log(cartItems); to console the cart items
 
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   // const statusOfLogin = useAuth();
@@ -28,42 +48,77 @@ const Header = () => {
   const online = useOnline();
 
   return (
-    <div className="flex flex-wrap border shadow-lg bg-blue-100 justify-between">
-      <Title />
-      <div>
-        <ul className="flex py-10">
-          <li className="px-2">
-            <Link to="/">Home</Link>
-          </li>
+    <div>
+      {user?.email ? (
+        <div className="flex flex-wrap border shadow-lg justify-between">
+          <Title />
+          <div>
+          
+            <ul className="flex py-10">
+              <li className="px-2">
+                <Link to="/">Home</Link>
+              </li>
 
-          <li className="px-2">
-            <Link to="/about">About</Link>
-          </li>
+              <li className="px-2">
+                <Link to="/about">About</Link>
+              </li>
 
-          <li className="px-2">
-            <Link to="/contact">Contact</Link>
-          </li>
+              <li className="px-2">
+                <Link to="/contact">Contact</Link>
+              </li>
 
-          <li className="px-2">
-            <Link to="/instamart">Instamart</Link>
-          </li>
-     
-          <li className="px-2">
-            <Link to="/cart">Cart-{cartItems.length} item</Link>
-          </li>
+              <li className="px-2">
+                <Link to="/instamart">Instamart</Link>
+              </li>
 
-        </ul>
-      </div>
-      <h1>{user.name}</h1>
-      <h1>{online ? "✅" : "🔴"}</h1>
-      {isLoggedIn ? (
-        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+              <li className="px-2">
+                <Link to="/cart">Cart-{cartItems.length} item</Link>
+              </li>
+
+              <li>
+              <h1 className="font-bold">Welcome {user?.email}</h1>
+              </li>
+            </ul>
+          </div>
+          {/* <h1>{user.name}</h1> */}
+          <h1>{online ? "✅" : "🔴"}</h1>
+          <button onClick={handleSignOut}>Logout</button>
+        </div>
       ) : (
-        <button onClick={() => setIsLoggedIn(true)}>Login</button>
+        <div className="flex flex-wrap border shadow-lg justify-between">
+          <Title />
+          <div>
+            {/* <h1>{user?.email}</h1> */}
+            <ul className="flex py-10">
+              <li className="px-2">
+                <Link to="/">Home</Link>
+              </li>
+
+              <li className="px-2">
+                <Link to="/about">About</Link>
+              </li>
+
+              <li className="px-2">
+                <Link to="/contact">Contact</Link>
+              </li>
+
+              <li className="px-2">
+                <Link to="/instamart">Instamart</Link>
+              </li>
+
+              <li className="px-2">
+                <Link to="/cart">Cart-{cartItems.length} item</Link>
+              </li>
+            </ul>
+          </div>
+          {/* <h1>{user.name}</h1> */}
+          <h1>{online ? "✅" : "🔴"}</h1>
+
+          <Link to="/login">
+            <button onClick={handleSignIn}>Login</button>
+          </Link>
+        </div>
       )}
-      {/* {
-        statusOfLogin?<button>Logout</button> : <button>LogIn</button>
-      } */}
     </div>
   );
 };

@@ -69,7 +69,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="p-5 bg-blue-100 shadow-lg my-5">
+      <div className="p-5 shadow-lg my-5">
         <input
           type="text"
           className="m-2 p-2 focus:bg-slate-200"
@@ -112,7 +112,7 @@ const Body = () => {
         /> */}
 
         {/* using spread operator */}
-        <input
+        {/* <input
         placeholder="name"
           type="text"
           onChange={(e) =>
@@ -131,7 +131,7 @@ const Body = () => {
               email: e.target.value,
             })
           }
-        />
+        /> */}
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => {

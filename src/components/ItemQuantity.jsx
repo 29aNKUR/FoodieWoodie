@@ -10,14 +10,20 @@ const ItemQuantity = ({item}) => {
 
   return (
     <div>
-      <div>
+      <div className="flex justify-evenly text-green-600 border border-green-600 w-[10rem] px-5">
+        <div >
         <button onClick={()=>dispatch(removeItem(item.id))}>
           -
         </button>
+        </div>
+      
         <span>{item.quantity}</span>
+        <div>
         <button onClick={()=>dispatch(addItem(item))}>
           +
         </button>
+        </div>
+   
       </div>
     </div>
   )

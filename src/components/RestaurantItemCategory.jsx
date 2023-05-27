@@ -10,7 +10,7 @@ const RestaurantItemCategory = ({category}) => {
 
   return (
     <div>
-        <h1>{category?.title}</h1>
+        <h1 className='text-2xl font-bold'>{category?.title}</h1>
         <div>
           {
             category.itemCards.map((item,index) => (

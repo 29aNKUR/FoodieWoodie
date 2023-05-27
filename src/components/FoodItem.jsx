@@ -35,31 +35,25 @@ const FoodItem = ({ item }) => {
 
 
   return (
-    <div className="flex">
-       <div className="w-[200px] m-2 p-2 shadow-lg bg-blue-100">
-        <div className="">
-          <div>
-            <img src={FOOD_ITEM_URL + imageId} alt="" />
+    <div className="">
+       <div className="w-full p-[2rem] flex justify-between">
+     
+        
+          <div className="w-4/5">
+            <h1 className="font-bold text-xl ">{name}</h1>
+           <h2>{description}</h2>
+            <p>{String(price / 100)}</p>
           </div>
-          <div className="font-bold text-2xl">
-            {" "}
-            <h1>{name}</h1>
-          </div>
-          <div>
-            {" "}
-            <h2>{description}</h2>
-          </div>
-          <div>
-            <p>{price / 100}</p>
-          </div>
-          <div>
-            <button onClick={()=>handleRemoveItem(id)}>-</button>
-          </div>
-          {itemsCount}
-          <div>
-            <button onClick={()=>handleAddItem(item)}>+</button>
-          </div>
-        </div>
+  
+          <div className="w-1/5">
+           <img src={FOOD_ITEM_URL + imageId} alt="" /> 
+           <div className="flex justify-evenly text-green-600 border border-green-600">    <button onClick={()=>handleRemoveItem(id)}>-</button>   
+          {itemsCount}    
+            <button onClick={()=>handleAddItem(item)}>+</button></div>    
+        
+          </div>   
+           
+      
        
     </div>
     {/* <div>
@@ -68,9 +62,8 @@ const FoodItem = ({ item }) => {
           <h2>{price/100*itemsCount}</h2> 
           </div>)}
         </div> */}
-
-  
-    </div>
+   <hr/> 
+</div>
    
   );
 };
