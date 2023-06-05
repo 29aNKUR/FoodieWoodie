@@ -5,7 +5,29 @@ export const FOOD_ITEM_URL = "https://res.cloudinary.com/swiggy/image/upload/fl_
 
 export const FETCH_MENU_URL = "https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.6672946&lng=75.888397&restaurantId=";
 
+export const DELIVERY_ADDRESS_LIST =[
+  {
+    id:"01",
+    addressType:"Home",
+    addressDescription:"Ward 14, Hedgewar Colony,Rajgarh"
+  },
+  {
+    id:"02",
+    addressType:"Work",
+    addressDescription:"Infosys, Super Corridor, Indore"
+  }
+] 
 
+export const PAYMENT_MODE = [{
+  id:"01",
+  mode:"Pay Offline",
+  means:"Cash On Delivery"
+},
+{
+  id:"02",
+  mode:"Pay Online",
+  means:"UPI/Card Payment"
+}]
 
 export const restaurantList = [     {
   "type": "restaurant",

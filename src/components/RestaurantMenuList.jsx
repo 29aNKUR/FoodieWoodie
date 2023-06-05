@@ -2,15 +2,13 @@ import React from "react";
 import RestaurantNestedItemCategory from "./RestaurantNestedItemCategory";
 import RestaurantItemCategory from "./RestaurantItemCategory";
 import useItemTotal from "../utils/useItemTotal";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useSelector } from "react-redux";
 import ItemQuantity from "./ItemQuantity";
 import cookingFood from "../assets/img/cookingFood.jpg";
+import { Link } from "react-router-dom";
 
 const RestaurantMenuList = ({ menu }) => {
   const cartItems = useSelector((store) => store.cart.items);
-
-  const dispatch = useDispatch();
 
   const getItemsTotal = useItemTotal();
 
@@ -32,22 +30,26 @@ const RestaurantMenuList = ({ menu }) => {
         </div>
 
         {Object.values(cartItems).length < 1 ? (
-          <div className="w-2/5 border-2">
-          <div className="mx-[5rem] justify-center">
-            <img className="w-[200px] h-[200px]" src={cookingFood} alt="cooking food logo" />
-            <h1 className="w-3/5 flex-col justify-center align-middle">Delicious food is always cooking. Go ahead order some!!</h1>
+          <div className=" border-2">
+            <div className="mx-[5rem]">
+              <div className="flex justify-center">
+              <img
+                className="w-[200px] h-[200px]"
+                src={cookingFood}
+                alt="cooking food logo"
+              />
+              </div>
+             
+             <div className = "flex justify-center">
+             <h1 className="">
+                Delicious food is always cooking. Go ahead order some!!
+              </h1>
+             </div>
+           
+            </div>
           </div>
-  
-        
-   
-       
-
-          </div>
-   
-      
-       
         ) : (
-          <div className="w-3/5 border-2 shadow-lg justify-center  mx-[2rem]">
+          <div className="w-[500px] border-2 shadow-lg justify-center  mx-[2rem] container">
             <h1 className="font-bold text-xl p-[0.5rem]">Cart</h1>
             <div className="p-[0.5rem]">
               <h1>{Object.values(cartItems).length} items</h1>
@@ -55,20 +57,24 @@ const RestaurantMenuList = ({ menu }) => {
             {Object.values(cartItems).map((item, index) => {
               return (
                 <div
-                  className="flex justify-between w-full my-[1rem] px-[0.5rem]"
+                  className="flex justify-between my-[1rem] px-[0.5rem]"
                   key={index}
                 >
-                  <div className="w-2/5">
+                  <div className="w-3/5">
                     <h1 className="">{item?.name}</h1>
                   </div>
 
-                  <div className="1/5">
+                  <div className="w-2/5">
                     <ItemQuantity item={item} />
                   </div>
 
                   <div>
-                    <h2 className="2/5">
-                      {(item?.price / 100) * item?.quantity}
+                    <h2 className="w-1/5">
+                      {/* if price of an item shows NaN */}
+                      {!item?.price
+                        ? (item?.variantsV2?.pricingModels[0].price / 100) *
+                          item?.quantity
+                        : (item?.price / 100) * item?.quantity}
                     </h2>
                   </div>
                 </div>
@@ -76,14 +82,16 @@ const RestaurantMenuList = ({ menu }) => {
             })}
             <hr />
             <div className="flex justify-between my-[2rem] px-[0.5rem]">
-              <span className="">Sub Total</span>
+              <span className="font-bold">Sub Total</span>
               {getItemsTotal()}
             </div>
 
             <div className="flex justify-center my-3">
-              <button className="border border-yellow-400 bg-yellow-400 text-white p-[0.5rem]">
-                Checkout
-              </button>
+              <Link to="/cart">
+                <button className="border border-yellow-400 bg-yellow-400 text-white p-[0.5rem]">
+                  Checkout
+                </button>
+              </Link>
             </div>
           </div>
         )}

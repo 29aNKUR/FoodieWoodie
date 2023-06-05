@@ -20,6 +20,9 @@ import { Provider } from "react-redux";
 import Signup from "./components/Signup";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 import Login from "./components/Login";
+import Checkout from "./components/Checkout";
+import OrderSummary from "./components/OrderSummary";
+import Razorpay from "./components/Razorpay";
 
 
 
@@ -102,6 +105,18 @@ const appRouter = createBrowserRouter([
         {
           path:"/login",
           element:<Login/>
+        },
+        {
+          path:"/checkout",
+          element:<Checkout/>
+        },
+        {
+          path:"/cart/ordersummary",
+          element:<OrderSummary/>
+        },
+        {
+          path:"/razorpay",
+          element:<Razorpay/>
         }
       ]
     }]

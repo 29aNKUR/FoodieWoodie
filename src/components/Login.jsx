@@ -39,16 +39,13 @@ const Login = () => {
   }
 
   return (
-    <div className=''>
-      <div
-        className='flex flex-col justify-center items-center h-screen w-[30rem] h-[33rem] mx-[35rem] my-[4rem]'
-        // Adjust the height and width based on your layout requirements
-      >
-        <div>
+    <div className='container h-screen flex justify-center items-center border'>
+<div className=' '>
+<div className='w-full'>
             <img src={Logo} alt="" />
         </div>
         <div className='my-[1rem] '>
-          <label htmlFor='email' className=' mx-[1.7rem]'>Email</label>
+          <label htmlFor='email' className=' mx-[1.7rem] '>Email</label>
           <input
             type='email'
             name='email'
@@ -58,7 +55,7 @@ const Login = () => {
         </div>
 
         <div className='my-[1rem]'>
-          <label htmlFor='pass' className='mx-[1rem]'>Password</label>
+          <label htmlFor='pass' className='mx-[1rem] '>Password</label>
           <input
             type='password'
             name='pass'
@@ -79,8 +76,11 @@ const Login = () => {
         <div>
             Not registered with us yet? <Link to="/signup"><button className='border bg-black text-white'>Signup</button></Link>
         </div>
+</div>
+
+       
       </div>
-    </div>
+
   );
 };
 

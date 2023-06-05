@@ -13,7 +13,7 @@ import { signOut } from "firebase/auth";
 
 const Title = () => (
   <a href="/">
-    <img className="h-28 p-2" alt="logo" src={Logo} />
+    <img className="h-28 p-2 ml-28" alt="logo" src={Logo} />
   </a>
 );
 
@@ -72,11 +72,11 @@ const Header = () => {
               </li>
 
               <li className="px-2">
-                <Link to="/cart">Cart-{cartItems.length} item</Link>
+                <Link to="/cart">Cart</Link>
               </li>
 
               <li>
-              <h1 className="font-bold">Welcome {user?.email}</h1>
+              <h1 className="font-bold">Welcome {(user?.displayName)?user?.displayName:user?.email}</h1>
               </li>
             </ul>
           </div>
@@ -88,7 +88,7 @@ const Header = () => {
         <div className="flex flex-wrap border shadow-lg justify-between">
           <Title />
           <div>
-            {/* <h1>{user?.email}</h1> */}
+          
             <ul className="flex py-10">
               <li className="px-2">
                 <Link to="/">Home</Link>
@@ -107,16 +107,17 @@ const Header = () => {
               </li>
 
               <li className="px-2">
-                <Link to="/cart">Cart-{cartItems.length} item</Link>
+                <Link to="/cart">Cart</Link>
+              </li>
+
+              <li>
+              {/* <h1 className="font-bold">Welcome {(user?.displayName)?user?.displayName:user?.email}</h1> */}
               </li>
             </ul>
           </div>
           {/* <h1>{user.name}</h1> */}
           <h1>{online ? "✅" : "🔴"}</h1>
-
-          <Link to="/login">
-            <button onClick={handleSignIn}>Login</button>
-          </Link>
+          <Link to="/login" className="flex align-middle"><button onClick={handleSignIn}>Login</button></Link>
         </div>
       )}
     </div>

@@ -69,10 +69,11 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="p-5 shadow-lg my-5">
+      <div className="p-5 my-5 flex justify-center">
         <input
           type="text"
-          className="m-2 p-2 focus:bg-slate-200"
+          className="m-2 p-2 w-72 focus:bg-slate-200 border rounded-md" 
+          placeholder="Search for your favourite Restaurants"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
@@ -133,14 +134,15 @@ const Body = () => {
           }
         /> */}
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap p-5 ml-16">
         {filteredRestaurants.map((restaurant) => {
           return (
             <Link
               to={"/restaurant/" + restaurant.data.id}
               key={restaurant.data.id}
             >
-              <RestaurantCard {...restaurant.data} />
+              <div className="m-7"><RestaurantCard {...restaurant.data} /></div>
+              
             </Link>
           );
         })}

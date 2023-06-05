@@ -8,9 +8,11 @@ const ItemQuantity = ({item}) => {
 
   const dispatch = useDispatch();
 
+
+
   return (
     <div>
-      <div className="flex justify-evenly text-green-600 border border-green-600 w-[10rem] px-5">
+      <div className="flex justify-between max-w-[6rem] text-green-600 border border-green-600 rounded px-2">
         <div >
         <button onClick={()=>dispatch(removeItem(item.id))}>
           -

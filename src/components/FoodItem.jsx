@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { FOOD_ITEM_URL, IMG_CDN_URL } from "../config";
 import { addItem, removeItem } from "../utils/cartSlice";
 import { useState } from "react";
-import ItemQuantity from "./ItemQuantity";
+
 // import useItemTotal from "../utils/useItemTotal";
 
 
@@ -12,6 +12,8 @@ import ItemQuantity from "./ItemQuantity";
 const FoodItem = ({ item }) => {
 
   // const getItemsTotal = useItemTotal();
+
+  console.log(item,"Food item")
 
   const {id, name, description, imageId, price} = item;
 
@@ -40,14 +42,16 @@ const FoodItem = ({ item }) => {
      
         
           <div className="w-4/5">
-            <h1 className="font-bold text-xl ">{name}</h1>
-           <h2>{description}</h2>
-            <p>{String(price / 100)}</p>
+            <h1 className="font-semibold text-lg ">{name}</h1>
+            {/* if price of an item shows NaN */}
+            <p>{(!price)?((item?.variantsV2?.pricingModels[0].price)/100):((item?.price/100))}</p>
+           <h2 className="text-xs text-gray-400 w-[500] overflow-hidden my-5">{description}</h2>
+         
           </div>
   
           <div className="w-1/5">
            <img src={FOOD_ITEM_URL + imageId} alt="" /> 
-           <div className="flex justify-evenly text-green-600 border border-green-600">    <button onClick={()=>handleRemoveItem(id)}>-</button>   
+           <div className="flex justify-evenly text-green-600 border border-green-600 rounded-lg my-3 ">    <button onClick={()=>handleRemoveItem(id)}>-</button>   
           {itemsCount}    
             <button onClick={()=>handleAddItem(item)}>+</button></div>    
         
